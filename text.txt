@@ -1,0 +1,19 @@
+1. first install create folder
+2. npm init -y
+3. in project create a file index.js
+4. then in project terminal press the command npm install express cors
+5. note : install cors for to show backend data into frontened
+6. use cors in index.js
+     1. to get the data 
+        use app.get("", (req, res)=> {
+            res.send(anydata) // to get use res.send it will be the last parameter
+        })
+     2. to post data 
+        use ..  app.post("", (req, res) =>{
+            const data = req.body // use req.body 
+        })
+7. in bottem page app.listen(port, ()=>{
+    console.log("server running the port", port)
+})
+// and end of the page use module.export = app
+8. use the line module.export = app;
