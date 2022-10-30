@@ -17,3 +17,75 @@
 })
 // and end of the page use module.export = app
 8. use the line module.export = app;
+
+
+
+
+9. connect to mongodb 
+10. first sign up with google into mongodb // search - mongodb atlas
+11. 1. create a account  
+       generate a password
+    2. second step 
+       click Add my current ip Address
+12. then
+13. go to database
+14. Network Access Tab
+ - er moddhe current ip address dekhabe
+   er right side  add ip address e click kore 
+   Allow access from any where e click korle jkhono jiga theke access korte parbe
+15. Database Access
+    ei tab e jodi kono user make korte hay
+16. Database tab
+    to go connect option
+    to go connect your Application option
+    mark include full codee
+    then copy 
+    then paste in index.js file
+                          const uri = "mongodb+srv://userdb:S8nXMDUwnLg4b94y@cluster0.wg8wdsp.mongodb.net/?retryWrites=true&w=majority";
+                          const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+                          client.connect(err => {
+                          const collection = client.db("test").collection("devices");
+
+
+    console.log("database connected")
+    // perform actions on the collection object
+    client.close();
+});
+
+    then cut <password>
+    paste password your db
+    then in the terminal use npm i mongodb
+    then click browse to collection
+    finally go to collection 
+    in the collection your data will be saved
+    for insert delete 
+    search node mongodb crud
+    https://www.mongodb.com/docs/drivers/node/current/fundamentals/crud/
+    in the right side 
+    go to Usage Example option
+    check insert find delete
+ 
+    43 number line theke client k cut korte hbes
+
+
+    async function run() {
+    try {
+        const database = client.db("simpleNode"); // this is database name simpleNode
+        const userCollection = database.collection("users"); // this is collection name like table
+        // create a document to insert
+
+        app.post('/users', async (req, res) => {
+            console.log(req.body)
+
+            const user = req.body;
+
+            console.log(user)
+            const result = await userCollection.insertOne(user);
+            console.log(`A document was inserted with the _id: ${result.insertedId}`);
+            res.send(user)
+        })
+
+
+    } finally {
+    }
+} 
