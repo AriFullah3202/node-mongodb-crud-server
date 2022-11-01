@@ -30,7 +30,35 @@ async function run() {
 
         })
 
+        //this is for get the user
+        app.get('/users/:id', async (req, res) => {
+            console.log("clicked")
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await userCollection.findOne(query);
+            console.log(result);
+            res.send(result)
+        })
+        app.put('/users/:id', async (req, res) => {
+            console.log(" updated clicked")
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) }
+            const user = req.body;
+            console.log(user)
+            //if data found thahole update kore daw r jodi na pay thahole insert kore daw
+            const options = { upsert: true };
+            const updatedUser = {
+                //ei set er moddhe bole dite hobe kon kon property k set korte chao
+                $set: {
+                    name: user.name,
+                    email: user.email,
+                },
+            };
+            const result = await userCollection.updateOne(query, updatedUser, options);
+            res.send(result)
+        })
 
+        //this is for delleteee
         app.delete('/users/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
